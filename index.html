@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>feedbakkr vanilla SDK — test site</title>
+    <link rel="icon" href="data:," />
+    <style>
+      :root {
+        --ink: #111;
+        --paper: #fffdf7;
+        --mint: #c8efd7;
+        --peach: #ffe0c8;
+        --blue: #c8dffb;
+        --lavender: #dcd2f5;
+        --lemon: #fff3b0;
+      }
+      body {
+        font: 16px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+        max-width: 720px;
+        margin: 60px auto;
+        padding: 0 20px 120px;
+        color: var(--ink);
+        background: var(--paper);
+      }
+      h1 {
+        font-size: 32px;
+        letter-spacing: -0.02em;
+        margin: 0 0 4px;
+      }
+      h2 { font-size: 20px; margin: 0 0 8px; letter-spacing: -0.015em; }
+      .kicker {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 2px 8px;
+        border-radius: 999px;
+        background: var(--lavender);
+        border: 1.5px solid var(--ink);
+        margin-bottom: 12px;
+      }
+      .muted { color: #475569; }
+      .card {
+        border: 1.5px solid var(--ink);
+        border-radius: 14px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 4px 4px 0 var(--ink);
+        background: var(--mint);
+      }
+      .card--peach    { background: var(--peach); }
+      .card--blue     { background: var(--blue); }
+      .card--lavender { background: var(--lavender); }
+      .card--lemon    { background: var(--lemon); }
+      button {
+        font: inherit;
+        padding: 10px 16px;
+        border: 1.5px solid var(--ink);
+        border-radius: 999px;
+        background: #fff;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 var(--ink);
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 13px;
+        background: #f6f1e4;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      img {
+        border: 1.5px solid var(--ink);
+        border-radius: 10px;
+        max-width: 100%;
+      }
+      footer { margin-top: 48px; color: #64748b; font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <span class="kicker">feedbakkr test bed</span>
+    <h1>Vanilla SDK smoke test</h1>
+    <p class="muted">
+      This page exists so we can kick the tires on
+      <code>@magicowls/feedbakkr-js</code> on a real hosted origin. A
+      launcher pill should appear bottom-right; click it, pick any element
+      on this page, and leave a comment.
+    </p>
+
+    <div class="card">
+      <h2>Plain heading</h2>
+      <p>A paragraph with some <strong>strong</strong> text and an
+        <a href="#anchor">inline link</a>. Try pinning a comment to the
+        heading, the paragraph, and the link in turn — each should land on
+        its exact element.</p>
+      <p><button type="button" id="demo-cta">Try clicking me</button></p>
+    </div>
+
+    <div class="card card--peach">
+      <h2>Lists + nested</h2>
+      <ul>
+        <li>First list item</li>
+        <li>Second list item — pin me</li>
+        <li>Third with a <code>&lt;code&gt;</code> tag inside</li>
+      </ul>
+    </div>
+
+    <div class="card card--blue">
+      <h2>Form elements</h2>
+      <p class="muted">Picking these should still capture a stable selector.</p>
+      <label for="demo-name">Name</label>
+      <br />
+      <input id="demo-name" type="text" placeholder="Pin this input" />
+    </div>
+
+    <div class="card card--lavender">
+      <h2>Image anchor</h2>
+      <img
+        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 80'><rect width='200' height='80' rx='10' fill='%23c8dffb' stroke='%23111' stroke-width='3'/><text x='100' y='48' font-size='14' font-family='system-ui' text-anchor='middle'>pin me</text></svg>"
+        width="200" height="80" alt="" />
+    </div>
+
+    <div class="card card--lemon">
+      <h2>Deeply nested</h2>
+      <div><div><div>
+        <p>A paragraph buried three divs deep. Selectors should walk up the
+          tree sensibly.</p>
+      </div></div></div>
+    </div>
+
+    <footer>
+      Drop-in embed:
+      <code>&lt;script src="..." data-site-id="..." defer&gt;&lt;/script&gt;</code>
+      <br />
+      Built from
+      <code>packages/sdk-vanilla/dist/feedbakkr.iife.js</code> — see README.
+    </footer>
+
+    <!-- Replace data-site-id with the key for the site you provisioned in the
+         admin dashboard (and make sure this origin is in its allowed_origins). -->
+    <script
+      src="/feedbakkr.iife.js"
+      data-site-id="REPLACE_WITH_YOUR_SITE_KEY"
+      data-api-base="https://api.feedbakkr.io"
+      defer
+    ></script>
+  </body>
+</html>

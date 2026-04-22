@@ -1,0 +1,12 @@
+# Purely static — no build step. This file exists so Netlify doesn't try
+# to infer one and so we can tighten headers if we ever need to.
+[build]
+  publish = "."
+  command = ""
+
+# Don't cache the iife bundle aggressively — we rebuild+push it whenever the
+# monorepo SDK changes and want new deploys visible immediately.
+[[headers]]
+  for = "/feedbakkr.iife.js"
+  [headers.values]
+    Cache-Control = "public, max-age=60, must-revalidate"
